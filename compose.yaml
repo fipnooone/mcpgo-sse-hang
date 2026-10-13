@@ -1,0 +1,12 @@
+# gitea-mcp in HTTP mode. get_gitea_mcp_server_version answers locally, so no
+# Gitea instance is needed; GITEA_HOST only has to be syntactically valid.
+services:
+  gitea-mcp:
+    image: docker.gitea.com/gitea-mcp-server:1.8.1
+    entrypoint: ["/app/gitea-mcp"]
+    command: ["-t", "http", "--port", "8080"]
+    environment:
+      GITEA_HOST: http://gitea.invalid:3000
+      GITEA_ACCESS_TOKEN: dummy
+    ports:
+      - "127.0.0.1:8080:8080"
